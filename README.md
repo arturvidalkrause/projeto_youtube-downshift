@@ -28,20 +28,20 @@ Modelagem ER Youtube/
 ├── Parte 1/  
 │   ├── *Requisitos banco de dados youtube.md*: Lista dos requisitos do banco de dados.  
 │   ├── *Imagem do modelo ER (image_ER.png)*: 	Imagem do modelo ER inicial.  
-│   ├── *Modelagem ER Youtube.docx*:			Documento detalhado sobre a modelagem ER.  
+│   ├── *Modelagem ER Youtube.docx*:		Documento detalhado sobre a modelagem ER.  
 │   ├── *Modelagem ER.markdown*: 		Versão em Markdown da modelagem ER.  
-│   └── *Youtube_01.erdplus*:		Arquivo ERDPlus com a modelagem do banco de dados.  
+│   └── *Youtube_01.erdplus*:			Arquivo ERDPlus com a modelagem do banco de dados.  
 |
 ├── Parte 2/  
 │   ├── *Apresentação.pdf*: 		Apresentação do projeto (PDF).  
 │   ├── *Apresentação.pptx*: 		Apresentação do projeto (PowerPoint).  
 │   ├── *BD_Example_Data.xlsx*: 	Planilha com dados fictícios.  
 │   ├── *gerateTable.ipynb*: 		Script Jupyter para gerar dados de exemplo.  
-│   ├── *image_ER.png*: 			Imagem do modelo ER revisado.  
+│   ├── *image_ER.png*: 		Imagem do modelo ER revisado.  
 │   ├── *image_Relational.png*: 	Imagem do modelo relacional.  
-│   ├── *MIMI_ER.erdplus*: 			Arquivo ERDPlus com o modelo ER revisado.  
+│   ├── *MIMI_ER.erdplus*: 		Arquivo ERDPlus com o modelo ER revisado.  
 │   ├── *MIMI_Relational.erdplus*: 	Arquivo ERDPlus com o modelo relacional.  
-│   └── *Requisitos.md*: 			Lista reestruturada dos requisitos do banco de dados.
+│   └── *Requisitos.md*: 		Lista reestruturada dos requisitos do banco de dados.
 ```
 
 
