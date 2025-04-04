@@ -1,0 +1,50 @@
+# Arquivo .gitignore padão gerado para previnir que certos arquivos não sejam commitados
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar pastas de builds/compilações
+/build
+/dist
+/out
+/bin
+/obj
+
+# Ignorar arquivos de IDEs e editores específicos
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar arquivos de configuração do sistema
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorar dependências de pacotes de gerenciadores comuns
+node_modules/
+bower_components/
+vendor/
+
+# Ignorar arquivos de configuração de ambiente
+.env
+.env.local
+.env.*.local
+
+# Ignorar pastas específicas do Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignorar arquivos de compilação Java
+*.class
+
+# Ignorar arquivos de compilação .NET
+bin/
+obj/
+
+# Ignorar arquivos do sistema Windows
+Desktop.ini
+Thumbs.db
