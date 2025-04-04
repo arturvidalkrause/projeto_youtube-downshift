@@ -1,6 +1,5 @@
 # MIMI - Mídia Interativa Multiplataforma Interconectada
 
-
 <div align="center">
 <pre>
 M     M   III   M     M   III 
