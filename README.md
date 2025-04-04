@@ -28,9 +28,9 @@ Modelagem ER Youtube/
 ├── Parte 1/  
 │   ├── *Requisitos banco de dados youtube.md*: Lista dos requisitos do banco de dados.  
 │   ├── *Imagem do modelo ER (image_ER.png)*: 	Imagem do modelo ER inicial.  
-│   ├── *Modelagem ER Youtube.docx*:	Documento detalhado sobre a modelagem ER.  
-│   ├── *Modelagem ER.markdown*: 	Versão em Markdown da modelagem ER.  
-│   └── *Youtube_01.erdplus*:	Arquivo ERDPlus com a modelagem do banco de dados.  
+│   ├── *Modelagem ER Youtube.docx*:			Documento detalhado sobre a modelagem ER.  
+│   ├── *Modelagem ER.markdown*: 		Versão em Markdown da modelagem ER.  
+│   └── *Youtube_01.erdplus*:		Arquivo ERDPlus com a modelagem do banco de dados.  
 |
 ├── Parte 2/  
 │   ├── *Apresentação.pdf*: 		Apresentação do projeto (PDF).  
