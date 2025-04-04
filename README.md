@@ -2,7 +2,6 @@
 
 
 <div align="center">
-	<p>
 <pre>
 M     M   III   M     M   III 
 MM   MM    I    MM   MM    I  
@@ -10,7 +9,6 @@ M M M M    I    M M M M    I
 M  M  M    I    M  M  M    I  
 M     M   III   M     M   III 
 </pre>
-	</p>
 </div>
 
 Projeto de modelagem de banco de dados inspirado no YouTube, com foco em uma plataforma de vídeos chamada **MIMI**. A ideia foi construir uma estrutura sólida para um sistema de gerenciamento de usuários, canais, conteúdos multimídia e interações sociais.
@@ -25,24 +23,26 @@ Projeto de modelagem de banco de dados inspirado no YouTube, com foco em uma pla
 
 ## Estrutura do Projeto
 
+```markdown
 Modelagem ER Youtube/  
 ├── Parte 1/  
-│   ├── **Requisitos banco de dados youtube.md**: Lista dos requisitos do banco de dados.  
-│   ├── **Imagem do modelo ER (image_ER.png)**: Imagem do modelo ER inicial.  
-│   ├── **Modelagem ER Youtube.docx**: Documento detalhado sobre a modelagem ER.  
-│   ├── **Modelagem ER.markdown**: Versão em Markdown da modelagem ER.  
-│   └── **Youtube_01.erdplus**: Arquivo ERDPlus com a modelagem do banco de dados.  
+│   ├── *Requisitos banco de dados youtube.md*: Lista dos requisitos do banco de dados.  
+│   ├── *Imagem do modelo ER (image_ER.png)*: 	Imagem do modelo ER inicial.  
+│   ├── *Modelagem ER Youtube.docx*: 			Documento detalhado sobre a modelagem ER.  
+│   ├── *Modelagem ER.markdown*: 				Versão em Markdown da modelagem ER.  
+│   └── *Youtube_01.erdplus*: 					Arquivo ERDPlus com a modelagem do banco de dados.  
 |
 ├── Parte 2/  
-│   ├── **Apresentação.pdf**: Apresentação do projeto (PDF).  
-│   ├── **Apresentação.pptx**: Apresentação do projeto (PowerPoint).  
-│   ├── **BD_Example_Data.xlsx**: Planilha com dados fictícios.  
-│   ├── **gerateTable.ipynb**: Script Jupyter para gerar dados de exemplo.  
-│   ├── **image_ER.png**: Imagem do modelo ER revisado.  
-│   ├── **image_Relational.png**: Imagem do modelo relacional.  
-│   ├── **MIMI_ER.erdplus**: Arquivo ERDPlus com o modelo ER revisado.  
-│   ├── **MIMI_Relational.erdplus**: Arquivo ERDPlus com o modelo relacional.  
-│   └── **Requisitos.md**: Lista reestruturada dos requisitos do banco de dados.  
+│   ├── *Apresentação.pdf*: 		Apresentação do projeto (PDF).  
+│   ├── *Apresentação.pptx*: 		Apresentação do projeto (PowerPoint).  
+│   ├── *BD_Example_Data.xlsx*: 	Planilha com dados fictícios.  
+│   ├── *gerateTable.ipynb*: 		Script Jupyter para gerar dados de exemplo.  
+│   ├── *image_ER.png*: 			Imagem do modelo ER revisado.  
+│   ├── *image_Relational.png*: 	Imagem do modelo relacional.  
+│   ├── *MIMI_ER.erdplus*: 			Arquivo ERDPlus com o modelo ER revisado.  
+│   ├── *MIMI_Relational.erdplus*: 	Arquivo ERDPlus com o modelo relacional.  
+│   └── *Requisitos.md*: 			Lista reestruturada dos requisitos do banco de dados.
+```
 
 
 ## Funcionalidades Modeladas
@@ -73,6 +73,11 @@ Modelagem ER Youtube/
 - **Conteúdo - Playlists**: Um **conteúdo** pode estar associado a **várias playlists**, e uma **playlist** pode conter **vários conteúdos**.
 - **Conteúdo - Tag**: **Conteúdos** podem ter **várias tags** associadas, enquanto cada **tag** pode ser vinculada a **múltiplos conteúdos**.
 
+
+#### **Diagrama ER**:
+![Modelo ER](./parte%202/image_ER.png)
+
+
 ## Exemplos de Dados
 
 A planilha **BD_Example_Data.xlsx** contém dados fictícios para testar e demonstrar o funcionamento do banco de dados. Os dados de exemplo são fictícios e incluem:
@@ -90,7 +95,7 @@ A planilha **BD_Example_Data.xlsx** contém dados fictícios para testar e demon
 Durante a execução do projeto, algumas dificuldades foram enfrentadas, incluindo:
 
 - Alta complexidade de relacionamento entre as **entidades**.
-- Limitações da ferramenta **ERDPlus**, que dificultou a implementação de certos relacionamentos.
+- Limitações da ferramenta **ERDPlus**, que dificultou a implementação de certos relacionamentos, especialmente na exportação do diagrama e a limitação de aceitar apenas 8 relacionamentos em cada entidade. Embora tenha sido feito um esforço para criar uma representação quase planar (com o mínimo de entrelações possível), porém para a exportação o ERDPlus regera o diagrama e não segue a posição exata dos 'fios', o que resulta em entrelaçamentos e sobreposições, dificultando a  visualização das conexões entre as entidades.
 - Esforço considerável para garantir que a **normalização** fosse feita corretamente até a **3ª forma normal**.
 
 

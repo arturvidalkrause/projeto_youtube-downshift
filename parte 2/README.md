@@ -53,7 +53,7 @@ A entrega da Parte 2 inclui os seguintes arquivos:
 ### 5. Dificuldades Encontradas
 Durante a execução da Parte 2, algumas dificuldades foram enfrentadas, incluindo:
 - **Complexidade das relações entre entidades**: A modelagem de entidades interligadas, como notificações e interações de usuários, exigiu bastante análise.
-- **Limitações do ERDPlus**: A ferramenta ERDPlus apresentou limitações na implementação de alguns relacionamentos e na visualização de dados mais complexos.
+- **Limitações do ERDPlus**: A ferramenta ERDPlus apresentou limitações na implementação de alguns relacionamentos e na visualização de dados mais complexos. Uma das príncipais limitações e a limitação de poder ter no máximo 8 relacionamentos em cada entidade. Alem disso, embora tenha sido feito um esforço para criar uma representação quase planar (com o mínimo de entrelações possível), porém para a exportação o ERDPlus regera o diagrama e não segue a posição exata dos 'fios', o que resulta em entrelaçamentos e sobreposições, dificultando a  visualização das conexões entre as entidades.
 - **Normalização para a 3ª forma normal**: Garantir que todas as dependências fossem devidamente tratadas na 3FN demandou um esforço significativo.
 
 ### 6. Considerações Finais
