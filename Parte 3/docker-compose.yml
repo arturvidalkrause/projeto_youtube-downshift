@@ -1,0 +1,73 @@
+services:
+  ###### Frontend (React + Nginx) #######
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    # depends_on:
+    #   - backend
+
+    ####### Backend (Node.js API) ########
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      DATABASE_HOST: db_postgres
+      DATABASE_USER: ${APP_DB_USER}
+      DATABASE_PASSWORD: ${APP_DB_PASSWORD}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_PORT: 5432
+      MINIO_ENDPOINT: minio
+      MINIO_PORT: 9000
+      MINIO_ACCESS_KEY: ${MINIO_APP_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_APP_SECRET_KEY}
+      MINIO_USE_SSL: false
+      MINIO_VIDEOS_BUCKET: ${MINIO_VIDEOS_BUCKET}
+      MINIO_IMAGES_BUCKET: ${MINIO_IMAGES_BUCKET}
+      MINIO_LIVES_BUCKET: ${MINIO_LIVES_BUCKET}
+    depends_on:
+      - db_postgres
+      - minio
+    restart: unless-stopped
+
+  ######## PostgreSQL Database ##########
+  db_postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  ####### MinIO Object Storage ##########
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  minio_data:
