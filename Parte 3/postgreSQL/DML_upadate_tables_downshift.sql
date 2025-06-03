@@ -734,7 +734,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         1 -- Channel: Tech Rutra
     ),
     (
@@ -748,7 +748,7 @@ VALUES
         14, -- Ciência e Tecnologia
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         1 -- Channel: Tech Rutra
     ),
     (
@@ -762,7 +762,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         1 -- Channel: Tech Rutra
     ),
     (
@@ -776,7 +776,7 @@ VALUES
         12, -- Guias e Estilo
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         1 -- Channel: Tech Rutra
     ),
     (
@@ -790,7 +790,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         1 -- Channel: Tech Rutra
     ),
     -- === Canal 2: Miku Beats (4 vídeos) ===
@@ -805,7 +805,7 @@ VALUES
         2, -- Música
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        6, -- Legenda em Inglês (verifique seu cap_id)
+        1, -- Legenda em Inglês (verifique seu cap_id)
         2 -- Channel: Miku Beats
     ),
     (
@@ -819,7 +819,7 @@ VALUES
         2, -- Música
         1, -- L - Livre
         23, -- Japanese (verifique seu lang_id)
-        10, -- Legenda em Japonês (verifique seu cap_id)
+        5, -- Legenda em Japonês (verifique seu cap_id)
         2 -- Channel: Miku Beats
     ),
     (
@@ -833,7 +833,7 @@ VALUES
         2, -- Música (ou Educação 13)
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        8, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         2 -- Channel: Miku Beats
     ),
     (
@@ -847,7 +847,7 @@ VALUES
         2, -- Música
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        8, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         2 -- Channel: Miku Beats
     ),
     -- === Canal 3: AI com Gugu (4 vídeos) ===
@@ -862,7 +862,7 @@ VALUES
         14, -- Ciência e Tecnologia
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         3 -- Channel: AI com Gugu
     ),
     (
@@ -876,7 +876,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         3 -- Channel: AI com Gugu
     ),
     (
@@ -890,7 +890,7 @@ VALUES
         14, -- Ciência e Tecnologia
         3, -- 12 anos
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         3 -- Channel: AI com Gugu
     ),
     (
@@ -904,7 +904,7 @@ VALUES
         1, -- Pessoas e Blogs
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         3 -- Channel: AI com Gugu
     ),
     -- === Canal 4: Pixel Tide (5 vídeos) ===
@@ -919,7 +919,7 @@ VALUES
         3, -- Filmes e Animação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         4 -- Channel: Pixel Tide
     ),
     (
@@ -933,7 +933,7 @@ VALUES
         8, -- Games
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         4 -- Channel: Pixel Tide
     ),
     (
@@ -947,7 +947,7 @@ VALUES
         8, -- Games
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        8, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         4 -- Channel: Pixel Tide
     ),
     (
@@ -961,7 +961,7 @@ VALUES
         12, -- Guias e Estilo
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        6, -- Legenda em Inglês (verifique seu cap_id)
+        1, -- Legenda em Inglês (verifique seu cap_id)
         4 -- Channel: Pixel Tide
     ),
     (
@@ -975,7 +975,7 @@ VALUES
         3, -- Filmes e Animação
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        6, -- Legenda em Inglês (verifique seu cap_id)
+        1, -- Legenda em Inglês (verifique seu cap_id)
         4 -- Channel: Pixel Tide
     ),
     -- === Canal 5: AstroZen (4 vídeos) ===
@@ -990,7 +990,7 @@ VALUES
         14, -- Ciência e Tecnologia
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         5 -- Channel: AstroZen
     ),
     (
@@ -1004,7 +1004,7 @@ VALUES
         14, -- Ciência e Tecnologia
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        8, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         5 -- Channel: AstroZen
     ),
     (
@@ -1018,7 +1018,7 @@ VALUES
         12, -- Guias e Estilo
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         5 -- Channel: AstroZen
     ),
     (
@@ -1032,7 +1032,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        9, -- Legenda em Português (verifique seu cap_id)
+        4, -- Legenda em Português (verifique seu cap_id)
         5 -- Channel: AstroZen
     ),
     -- === Canal 6: Neon Wolf Games (5 vídeos) ===
@@ -1047,7 +1047,7 @@ VALUES
         8, -- Games
         3, -- 12 anos
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         6 -- Channel: Neon Wolf Games
     ),
     (
@@ -1061,7 +1061,7 @@ VALUES
         8, -- Games
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        8, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         6 -- Channel: Neon Wolf Games
     ),
     (
@@ -1075,7 +1075,7 @@ VALUES
         10, -- Entretenimento
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         6 -- Channel: Neon Wolf Games
     ),
     (
@@ -1089,7 +1089,7 @@ VALUES
         8, -- Games
         5, -- 16 anos (ind_rat_id = 5 para '16')
         21, -- English (verifique seu lang_id)
-        6, -- Legenda em Inglês (verifique seu cap_id)
+        1, -- Legenda em Inglês (verifique seu cap_id)
         6 -- Channel: Neon Wolf Games
     ),
     (
@@ -1103,7 +1103,7 @@ VALUES
         1, -- Pessoas e Blogs
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        7, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         6 -- Channel: Neon Wolf Games
     );
 
@@ -1135,7 +1135,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     (
@@ -1149,7 +1149,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     (
@@ -1163,7 +1163,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        7, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     (
@@ -1177,7 +1177,7 @@ VALUES
         12, -- Guias e Estilo
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     (
@@ -1191,7 +1191,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        7, -- Legenda em Inglês (verifique seu cap_id)
+        3, -- Legenda em Inglês (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     (
@@ -1205,7 +1205,7 @@ VALUES
         1, -- Pessoas e Blogs
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         7 -- Channel: Code Dream
     ),
     -- === Canal 8: Glitch Cat (4 vídeos) ===
@@ -1220,7 +1220,7 @@ VALUES
         8, -- Games
         2, -- 10 anos
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         8 -- Channel: Glitch Cat
     ),
     (
@@ -1234,7 +1234,7 @@ VALUES
         8, -- Games
         1, -- L - Livre
         21, -- English (verifique seu lang_id)
-        7, -- Legenda em Inglês (verifique seu cap_id)
+        2, -- Legenda em Inglês (verifique seu cap_id)
         8 -- Channel: Glitch Cat
     ),
     (
@@ -1248,7 +1248,7 @@ VALUES
         10, -- Entretenimento
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         8 -- Channel: Glitch Cat
     ),
     (
@@ -1262,7 +1262,7 @@ VALUES
         10, -- Entretenimento
         2, -- 10 anos
         21, -- English (verifique seu lang_id)
-        7, -- Legenda em Inglês (verifique seu cap_id)
+        2, -- Legenda em Inglês (verifique seu cap_id)
         8 -- Channel: Glitch Cat
     ),
     -- === Canal 9: Hack do Quokka (5 vídeos) ===
@@ -1277,7 +1277,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         9 -- Channel: Hack do Quokka
     ),
     (
@@ -1291,7 +1291,7 @@ VALUES
         13, -- Educação
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         9 -- Channel: Hack do Quokka
     ),
     (
@@ -1305,7 +1305,7 @@ VALUES
         14, -- Ciência e Tecnologia
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         9 -- Channel: Hack do Quokka
     ),
     (
@@ -1319,7 +1319,7 @@ VALUES
         12, -- Guias e Estilo
         1, -- L - Livre
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         9 -- Channel: Hack do Quokka
     ),
     (
@@ -1333,7 +1333,7 @@ VALUES
         13, -- Educação
         3, -- 12 anos
         22, -- Portuguese (verifique seu lang_id)
-        6, -- Legenda em Português (verifique seu cap_id)
+        2, -- Legenda em Português (verifique seu cap_id)
         9 -- Channel: Hack do Quokka
     );
 
@@ -1341,40 +1341,40 @@ VALUES
 INSERT INTO
     content_tag (content_id, tag_id)
 VALUES
-    -- Para "Guia Completo de PostgreSQL para Iniciantes (2025)" (content_id ~46)
-    (46, 1), -- Tutorial
-    (46, 8), -- Educação
-    (46, 9), -- Tecnologia
-    -- Para "Nova Faixa: 'Synthwave Dreams' - Miku Beats Original" (content_id ~47)
-    (47, 11), -- Música
-    -- Para "O Futuro da Inteligência Artificial: Previsões para 2030" (content_id ~48)
-    (48, 33), -- Inteligência Artificial
-    (48, 9), -- Tecnologia
-    (48, 8), -- Educação
-    -- Para "A Lenda do Cavaleiro Pixelado - Curta de Animação em Pixel Art" (content_id ~49)
-    (49, 24), -- Animação
-    -- (49, [tag_id para 'Pixel Art']), -- Adicione a tag 'Pixel Art' e use o ID
-    -- Para "Retro Rewind: Top 5 Jogos Esquecidos do Super Nintendo" (content_id ~50)
-    (50, 29), -- Games Retro
-    (50, 3), -- Gameplay
-    -- Para "As Imagens Mais Incríveis do Telescópio James Webb (Com Explicações)" (content_id ~51)
-    (51, 10), -- Ciência
-    (51, 9), -- Tecnologia
-    (51, 8), -- Educação
-    -- Para "Cyberpunk 2077 em 2025: Ainda Vale a Pena Explorar Night City?" (content_id ~52)
-    (52, 3), -- Gameplay
-    (52, 2), -- Review
-    -- Para "Curso Completo de Python para Iniciantes - Aula 1" (content_id ~53)
-    (53, 1), -- Tutorial
-    (53, 8), -- Educação
-    (53, 9), -- Tecnologia (sugestão: adicione tag 'Python')
-    -- Para "Física QUEBRADA: Os Momentos Mais Bizarros em Jogo Aleatório X" (content_id ~54)
-    (54, 3), -- Gameplay
-    (54, 13), -- Comédia
-    -- (54, [tag_id para 'Glitches' ou 'Bugs']),
-    -- Para "5 Erros de Segurança que VOCÊ Comete na Internet" (content_id ~55)
-    (55, 8), -- Educação
-    (55, 9);
+    -- Para "Guia Completo de PostgreSQL para Iniciantes (2025)" (content_id ~100)
+    (100, 1), -- Tutorial
+    (100, 8), -- Educação
+    (100, 9), -- Tecnologia
+    -- Para "Nova Faixa: 'Synthwave Dreams' - Miku Beats Original" (content_id ~101)
+    (101, 11), -- Música
+    -- Para "O Futuro da Inteligência Artificial: Previsões para 2030" (content_id ~102)
+    (102, 33), -- Inteligência Artificial
+    (102, 9), -- Tecnologia
+    (102, 8), -- Educação
+    -- Para "A Lenda do Cavaleiro Pixelado - Curta de Animação em Pixel Art" (content_id ~103)
+    (103, 24), -- Animação
+    -- (103, [tag_id para 'Pixel Art']), -- Adicione a tag 'Pixel Art' e use o ID
+    -- Para "Retro Rewind: Top 5 Jogos Esquecidos do Super Nintendo" (content_id ~104)
+    (104, 29), -- Games Retro
+    (104, 3), -- Gameplay
+    -- Para "As Imagens Mais Incríveis do Telescópio James Webb (Com Explicações)" (content_id ~105)
+    (105, 10), -- Ciência
+    (105, 9), -- Tecnologia
+    (105, 8), -- Educação
+    -- Para "Cyberpunk 2077 em 2025: Ainda Vale a Pena Explorar Night City?" (content_id ~106)
+    (106, 3), -- Gameplay
+    (106, 2), -- Review
+    -- Para "Curso Completo de Python para Iniciantes - Aula 1" (content_id ~107)
+    (107, 1), -- Tutorial
+    (107, 8), -- Educação
+    (107, 9), -- Tecnologia (sugestão: adicione tag 'Python')
+    -- Para "Física QUEBRADA: Os Momentos Mais Bizarros em Jogo Aleatório X" (content_id ~108)
+    (108, 3), -- Gameplay
+    (108, 13), -- Comédia
+    -- (108, [tag_id para 'Glitches' ou 'Bugs']),
+    -- Para "5 Erros de Segurança que VOCÊ Comete na Internet" (content_id ~109)
+    (109, 8), -- Educação
+    (109, 9);
 
 INSERT INTO
     video (
@@ -1383,67 +1383,67 @@ INSERT INTO
         video_duration
     )
 VALUES (
-        46,
+        100,
         'https://videos.downshift.tv/final/82_postgres_guia.mp4',
         '01:15:30'
     ),
     (
-        51,
+        105,
         'https://videos.downshift.tv/final/87_miku_synthwave.mp4',
         '00:04:12'
     ),
     (
-        55,
+        109,
         'https://videos.downshift.tv/final/91_gugu_futuro_ia.mp4',
         '00:20:50'
     ),
     (
-        59,
+        113,
         'https://videos.downshift.tv/final/95_pixeltide_cavaleiro.mp4',
         '00:05:30'
     ),
     (
-        60,
+        114,
         'https://videos.downshift.tv/final/96_pixeltide_snes_top5.mp4',
         '00:12:15'
     ),
     (
-        64,
+        118,
         'https://videos.downshift.tv/final/100_astrozen_jwst.mp4',
         '00:17:30'
     ),
     (
-        68,
+        122,
         'https://videos.downshift.tv/final/104_neonwolf_cyberpunk.mp4',
         '00:28:15'
     ),
     (
-        73,
+        127,
         'https://videos.downshift.tv/final/109_codedream_python1.mp4',
         '00:25:30'
     ),
     (
-        74,
+        128,
         'https://videos.downshift.tv/final/110_codedream_apptarefas.mp4',
         '02:10:00'
     ),
     (
-        79,
+        133,
         'https://videos.downshift.tv/final/115_glitchcat_fisica.mp4',
         '00:10:55'
     ),
     (
-        80,
+        134,
         'https://videos.downshift.tv/final/116_glitchcat_speedrun.mp4',
         '00:06:15'
     ),
     (
-        83,
+        137,
         'https://videos.downshift.tv/final/119_quokka_5erros.mp4',
         '00:12:50'
     ),
     (
-        84,
+        138,
         'https://videos.downshift.tv/final/120_quokka_phishing.mp4',
         '00:17:20'
     );
@@ -1478,7 +1478,7 @@ VALUES
         13, -- cont_category (Educação)
         1, -- cont_ind_rating (L - Livre)
         22, -- cont_language (Portuguese - ajuste o ID)
-        6, -- cont_caption (Português - ajuste o ID)
+        2, -- cont_caption (Português - ajuste o ID)
         1 -- channel_id (Tech Rutra)
     ),
     -- Short 2: Mini Animação Gato Pixelado (Canal Pixel Tide - ID 4)
@@ -1493,7 +1493,7 @@ VALUES
         3, -- Filmes e Animação
         1, -- L - Livre
         21, -- English (para atingir audiência de arte mais ampla)
-        7, -- English (ajuste o ID)
+        3, -- English (ajuste o ID)
         4 -- channel_id (Pixel Tide)
     ),
     -- Short 3: Bug Engraçado da Semana (Canal Glitch Cat - ID 8)
@@ -1508,12 +1508,12 @@ VALUES
         10, -- Entretenimento
         1, -- L - Livre
         22, -- Portuguese (ajuste o ID)
-        6, -- Portuguese (ajuste o ID)
+        3, -- Portuguese (ajuste o ID)
         8 -- channel_id (Glitch Cat)
     );
 
 -- Passo B: Inserir os detalhes na tabela 'short'
--- Lembre-se de usar os content_ids REAIS gerados no Passo A!
+-- Usando os content_ids REAIS gerados no Passo A (content_id original + 54)
 INSERT INTO
     short (
         content_id,
@@ -1522,20 +1522,20 @@ INSERT INTO
         sh_body
     )
 VALUES (
-        88, -- content_id do Short "PostgreSQL: Otimize Consultas em 58s!" (VERIFIQUE O ID REAL)
+        142, -- content_id do Short "PostgreSQL: Otimize Consultas em 58s!" (88 + 54)
         NULL, -- full_video_id (não é um corte de outro vídeo)
         NULL, -- sh_music_link (sem música específica)
         'https://videos.downshift.tv/shorts/final/124_rutra_pg_dica.mp4' -- sh_body (link para o arquivo do short)
     ),
     (
-        89, -- content_id do Short "Gatinho Pixelado Fofo Saltitando!" (VERIFIQUE O ID REAL)
+        143, -- content_id do Short "Gatinho Pixelado Fofo Saltitando!" (89 + 54)
         NULL, -- full_video_id
         'https://freemusicarchive.org/music/trackedmusic/Pulse/', -- sh_music_link (exemplo de link de música)
         'https://videos.downshift.tv/shorts/final/125_pixeltide_gato_pixel.mp4' -- sh_body
     ),
     (
-        90, -- content_id do Short "FAIL ÉPICO: Bug da Semana..." (VERIFIQUE O ID REAL)
-        79, -- full_video_id (link para o content_id do vídeo "Física QUEBRADA...") (VERIFIQUE O ID REAL)
+        144, -- content_id do Short "FAIL ÉPICO: Bug da Semana..." (90 + 54)
+        133, -- full_video_id do vídeo "Física QUEBRADA..." (79 + 54)
         NULL, -- sh_music_link
         'https://videos.downshift.tv/shorts/final/126_glitchcat_bug_semana.mp4' -- sh_body
     );
@@ -1592,18 +1592,19 @@ VALUES
 
 INSERT INTO
     video_comment (comment_id, content_id)
-VALUES (1, 46), -- Comentário de astrozen no "Guia Completo de PostgreSQL..."
-    (2, 51), -- Comentário de moonloop em "Nova Faixa: 'Synthwave Dreams'..."
-    (4, 55), -- Comentário de smolnova em "O Futuro da Inteligência Artificial..."
-    (5, 73), -- Comentário de dynamodash em "Curso Completo de Python para Iniciantes - Aula 1"
-    (6, 79), -- Comentário de rutra em "Física QUEBRADA: Os Momentos Mais Bizarros..."
-    (8, 83);
+VALUES (1, 100), -- Comentário de astrozen no "Guia Completo de PostgreSQL..."
+    (2, 105), -- Comentário de moonloop em "Nova Faixa: 'Synthwave Dreams'..."
+    (4, 109), -- Comentário de smolnova em "O Futuro da Inteligência Artificial..."
+    (5, 127), -- Comentário de dynamodash em "Curso Completo de Python para Iniciantes - Aula 1"
+    (6, 133), -- Comentário de rutra em "Física QUEBRADA: Os Momentos Mais Bizarros..."
+    (8, 137);
+-- Outro comentário (ID 8) no conteúdo 137
 
 INSERT INTO
     shortcomment (comment_id, content_id)
-VALUES (3, 89), -- Comentário de frostbyte (ID 3) no short "Gatinho Pixelado Fofo Saltitando!" (ID 125)
-    (7, 88);
--- Comentário de kinetixkick (ID 7) no short "PostgreSQL: Otimize Consultas em 58s!" (ID 124)
+VALUES (3, 143), -- Comentário de frostbyte (ID 3) no short "Gatinho Pixelado Fofo Saltitando!" (ID 143)
+    (7, 142);
+-- Comentário de kinetixkick (ID 7) no short "PostgreSQL: Otimize Consultas em 58s!" (ID 142)
 
 INSERT INTO
     comment_reply (
@@ -1622,29 +1623,17 @@ INSERT INTO
         u_watch_duration_cont,
         u_is_watching_cont_now
     )
-VALUES
-    -- Usuário 1 (rutra) assistindo "Guia Completo de PostgreSQL..." (ID 46)
-    (1, 46, '00:45:10', TRUE),
-    -- Usuário 2 (mikunikito) assistiu "Nova Faixa: 'Synthwave Dreams'..." (ID 51)
-    (2, 51, '00:04:12', FALSE),
-    -- Usuário 4 (pixeltide) assistindo "A Lenda do Cavaleiro Pixelado..." (ID 59)
-    (4, 59, '00:02:00', FALSE),
-    -- Usuário 7 (codedream) assistindo "Curso Completo de Python para Iniciantes - Aula 1" (ID 73)
-    (7, 73, '00:05:00', FALSE),
-    -- Usuário 8 (glitchcat) assistiu "Física QUEBRADA..." (ID 79)
-    (8, 79, '00:10:55', FALSE),
-    -- Usuário 16 (ramenspace) assistiu "Guia Completo de PostgreSQL..." (ID 46)
-    (16, 46, '01:15:30', FALSE),
-    -- Usuário 20 (zestbot) assistiu o Short "PostgreSQL: Otimize Consultas em 58s!" (ID 88)
-    (20, 88, '00:00:58', FALSE),
-    -- Usuário 31 (aurorabyte) assistindo o Short "Gatinho Pixelado Fofo Saltitando!" (ID 89)
-    (31, 89, '00:00:10', TRUE),
-    -- Usuário 1 (rutra) assistindo "Curso Completo de Python para Iniciantes - Aula 1" (ID 73)
-    (1, 73, '00:15:30', FALSE),
-    -- Usuário 5 (astrozen) assistindo "As Imagens Mais Incríveis do Telescópio James Webb..." (ID 64)
-    (5, 64, '00:08:15', TRUE),
-    -- Usuário 19 (frostbyte) assistindo o Short "FAIL ÉPICO: Bug da Semana..." (ID 90)
-    (19, 90, '00:00:20', FALSE);
+VALUES (1, 100, '00:45:10', TRUE),
+    (2, 105, '00:04:12', FALSE),
+    (4, 113, '00:02:00', FALSE),
+    (7, 127, '00:05:00', FALSE),
+    (8, 133, '00:10:55', FALSE),
+    (16, 100, '01:15:30', FALSE),
+    (20, 142, '00:00:58', FALSE),
+    (31, 143, '00:00:10', TRUE),
+    (1, 127, '00:15:30', FALSE),
+    (5, 118, '00:08:15', TRUE),
+    (19, 144, '00:00:20', FALSE);
 
 INSERT INTO
     user_interaction (users_id, uint_type)
@@ -1676,12 +1665,12 @@ VALUES (1, 4), -- Usuário 1 deu 'Like' (Supondo que gere ui_id = [ID_INTERACAO_
 
 INSERT INTO
     user_int_content (ui_cont_id, content_id)
-VALUES (1, 46), -- Like do Usuário 1 no Guia PostgreSQL
-    (2, 51), -- Usuário 2 salvou Synthwave Dreams
-    (3, 89), -- Dislike do Usuário 5 no Short Gato Pixelado
-    (4, 79), -- Denúncia do Usuário 10 no vídeo Física Quebrada
-    (5, 64), -- Usuário 16 partilhou James Webb Imagens
-    (8, 73);
+VALUES (1, 100), -- Like do Usuário 1 no Guia PostgreSQL
+    (2, 105), -- Usuário 2 salvou Synthwave Dreams
+    (3, 143), -- Dislike do Usuário 5 no Short Gato Pixelado
+    (4, 133), -- Denúncia do Usuário 10 no vídeo Física Quebrada
+    (5, 118), -- Usuário 16 partilhou James Webb Imagens
+    (8, 127);
 -- Interação no Curso de Python Aula 1
 
 INSERT INTO
@@ -1750,26 +1739,26 @@ INSERT INTO
     )
 VALUES
     -- Conteúdos para a Playlist 1: "PostgreSQL do Zero ao Avançado" (play_id = 1)
-    (1, 46, 1), -- "Guia Completo de PostgreSQL..."
-    (1, 88, 2), -- Short "PostgreSQL: Otimize Consultas em 58s!"
+    (1, 100, 1), -- "Guia Completo de PostgreSQL..."
+    (1, 142, 2), -- Short "PostgreSQL: Otimize Consultas em 58s!"
     -- Conteúdos para a Playlist 2: "Miku Beats: Trilhas Sonoras Eletrônicas" (play_id = 2)
-    (2, 51, 1), -- "Nova Faixa: 'Synthwave Dreams'..."
-    (2, 52, 2), -- "Hatsune Miku - 'Electric Heart'..."
-    (2, 53, 3), -- "Criando uma Música Eletrônica do Zero..."
-    (2, 54, 4), -- "Miku Beats Live Set..."
+    (2, 105, 1), -- "Nova Faixa: 'Synthwave Dreams'..."
+    (2, 106, 2), -- "Hatsune Miku - 'Electric Heart'..."
+    (2, 107, 3), -- "Criando uma Música Eletrônica do Zero..."
+    (2, 108, 4), -- "Miku Beats Live Set..."
     -- Conteúdos para a Playlist 3: "Desenvolvimento Full-Stack: Projetos Práticos" (play_id = 3)
-    (3, 74, 1), -- "Desenvolvendo um App de Lista de Tarefas..."
-    (3, 75, 2), -- "SQL vs NoSQL..."
-    (3, 76, 3), -- "Versionamento de Código com Git..."
-    (3, 77, 4), -- "Live Coding: Construindo um Chatbot..."
+    (3, 128, 1), -- "Desenvolvendo um App de Lista de Tarefas..."
+    (3, 129, 2), -- "SQL vs NoSQL..."
+    (3, 130, 3), -- "Versionamento de Código com Git..."
+    (3, 131, 4), -- "Live Coding: Construindo um Chatbot..."
     -- Conteúdos para a Playlist 4: "Pixel Art Animations & Shorts Collection" (play_id = 4)
-    (4, 59, 1), -- "A Lenda do Cavaleiro Pixelado..."
-    (4, 89, 2), -- Short "Gatinho Pixelado Fofo Saltitando!"
-    (4, 63, 3), -- "Pixel Tide Art Showcase - Best of 2024..."
-    (4, 62, 4), -- "Pixel Art Tutorial: Animando um Personagem Andando..."
+    (4, 113, 1), -- "A Lenda do Cavaleiro Pixelado..."
+    (4, 143, 2), -- Short "Gatinho Pixelado Fofo Saltitando!"
+    (4, 117, 3), -- "Pixel Tide Art Showcase - Best of 2024..."
+    (4, 116, 4), -- "Pixel Art Tutorial: Animando um Personagem Andando..."
     -- Conteúdos para a Playlist 5: "Clássicos Retro e Nostalgia Gamer (WIP)" (play_id = 5)
-    (5, 70, 1), -- "A Evolução dos Arcades..."
-    (5, 69, 2);
+    (5, 123, 1), -- "A Evolução dos Arcades..."
+    (5, 122, 2);
 -- "Top 10 Jogos com Estética Neon..."
 
 INSERT INTO

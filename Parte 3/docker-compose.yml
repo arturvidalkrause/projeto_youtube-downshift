@@ -36,6 +36,7 @@ services:
       MINIO_VIDEOS_BUCKET: ${MINIO_VIDEOS_BUCKET}
       MINIO_IMAGES_BUCKET: ${MINIO_IMAGES_BUCKET}
       MINIO_LIVES_BUCKET: ${MINIO_LIVES_BUCKET}
+    command: npm run dev
     depends_on:
       - db_postgres
       - minio
