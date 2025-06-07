@@ -47,9 +47,10 @@ ORDER BY
 `;
 		// Substitua 'videos' e as colunas pelos nomes corretos
 		const { rows } = await db.query(queryText);
-		const formattedJsonString = JSON.stringify(rows, null, 2);
-		// res.setHeader('Conte')
-		res.status(200).send(`<pre>${formattedJsonString}</pre>`);
+		// const formattedJsonString = JSON.stringify(rows, null, 2);
+		// // res.setHeader('Conte')
+		// res.status(200).send(`<pre>${formattedJsonString}</pre>`);
+		res.status(200).json(rows);
 	} catch (error) {
 		console.error('Erro ao buscar metadados dos vídeos:', error);
 		res.status(500).json({ error: 'Falha ao buscar metadados dos vídeos.' });

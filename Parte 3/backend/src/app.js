@@ -1,5 +1,8 @@
 const express = require('express');
+const accountRoutes = require('./routes/accountRoutes');
 const videoRoutes = require('./routes/videoRoutes');
+const shortRoutes = require('./routes/shortRoutes');
+const playlistRoutes = require('./routes/playlistRoutes');
 
 const app = express();
 app.use(express.json());
@@ -9,17 +12,10 @@ app.get('/', (req, res) => {
 	res.send('API do downshift esta no ar!');
 });
 
-app.get('/api/health', (res, req) => {
-	res.json({
-		status: 'UP',
-		timestamp: new DATE().toISOString(),
-		postgresHost: process.env.DATABASE_HOST,
-		minioEndpoint: process.env.MINIO_ENDPOINT,
-	});
-});
-
-app.use('/api/videos', videoRoutes);
-// app.use('/api/users', usersRouters); // exemplo
+app.use('/account/', accountRoutes);
+app.use('/videos/', videoRoutes);
+app.use('/shorts/', shortRoutes);
+app.use('/playlist/', playlistRoutes);
 
 // Middleware para tratamento de erros
 app.use((err, req, res, next) => {
