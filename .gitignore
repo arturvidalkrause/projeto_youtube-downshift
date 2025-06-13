@@ -48,3 +48,7 @@ obj/
 # Ignorar arquivos do sistema Windows
 Desktop.ini
 Thumbs.db
+
+/backups
+
+comandos.md
