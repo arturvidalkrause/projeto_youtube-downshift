@@ -8,8 +8,17 @@ const pool = new Pool({
 	port: parseInt(process.env.DATABASE_PORT || '5432'),
 });
 
-pool.on('connect', () => {
+pool.on('connect', (client) => {
 	console.log('Success connect to postgreSQL!');
+
+	// seta o search_path para o schema downshift
+	client.query('SET search_path TO downshift;')
+		.then(() => {
+			console.log('Default schema set to "downshift".');
+		})
+		.catch(err => {
+			console.error('Error setting default schema:', err);
+		});
 });
 
 pool.on('error', (err) => {

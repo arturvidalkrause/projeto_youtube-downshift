@@ -1,5 +1,4 @@
 services:
-  ####### Gateway/Reverse Proxy (NOVO) #######
   nginx-proxy:
     image: nginx:stable-alpine
     ports:
@@ -31,10 +30,17 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     volumes:
-      - ./frontend:/app # <-- Espelha seu código para Hot-Reloading
-      - /app/node_modules # <-- Isola o node_modules
+      - ./frontend:/app
+      - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      VITE_FIREBASE_API_KEY: ${FIREBASE_API_KEY}
+      VITE_FIREBASE_API_AUTH_DOMAIN: ${FIREBASE_API_AUTH_DOMAIN}
+      VITE_FIREBASE_API_PROJECT_ID: ${FIREBASE_API_PROJECT_ID}
+      VITE_FIREBASE_API_STORAGE_BUCKET: ${FIREBASE_API_STORAGE_BUCKET}
+      VITE_FIREBASE_API_MESSAGING_SENDER_ID: ${FIREBASE_API_MESSAGING_SENDER_ID}
+      VITE_FIREBASE_API_APP_ID: ${FIREBASE_API_APP_ID}
+      VITE_FIREBASE_API_MEASUREMENT_ID: ${FIREBASE_API_MEASUREMENT_ID}
+      CHOKIDAR_USEPOLLING: true
     restart: unless-stopped
     depends_on:
       - backend
@@ -52,6 +58,7 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3001
+      FIREBASE_CREDENTIALS_JSON: ${FIREBASE_CREDENTIALS_JSON}
       DATABASE_HOST: db_postgres
       DATABASE_USER: ${APP_DB_USER}
       DATABASE_PASSWORD: ${APP_DB_PASSWORD}
@@ -64,7 +71,9 @@ services:
       MINIO_USE_SSL: false
       MINIO_VIDEOS_BUCKET: ${MINIO_VIDEOS_BUCKET}
       MINIO_IMAGES_BUCKET: ${MINIO_IMAGES_BUCKET}
+      MINIO_SHORTS_BUCKET: ${MINIO_SHORTS_BUCKET}
       MINIO_LIVES_BUCKET: ${MINIO_LIVES_BUCKET}
+      MINIO_TEMP_BUCKET: ${MINIO_TEMP_BUCKET}
     command: npm run dev
     depends_on:
       - db_postgres

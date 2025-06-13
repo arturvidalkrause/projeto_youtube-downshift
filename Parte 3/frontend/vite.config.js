@@ -17,13 +17,5 @@ export default defineConfig({
 		// A SOLUÇÃO PARA O ERRO:
 		// Adicione seu domínio à lista de hosts permitidos.
 		allowedHosts: ['compilerhub.com.br'],
-
-		// O proxy para a API continua aqui, mas poderia ser movido para o nginx-proxy.conf no futuro.
-		proxy: {
-			'/api': {
-				target: 'http://backend:3001',
-				changeOrigin: true,
-			}
-		}
 	}
 })

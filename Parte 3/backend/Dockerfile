@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instala as dependencias 
+RUN apk add --no-cache ffmpeg
 RUN npm install
 
 # Copia o restante do código da aplicação

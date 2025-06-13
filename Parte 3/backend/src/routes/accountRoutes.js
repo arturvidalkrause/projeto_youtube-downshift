@@ -3,10 +3,9 @@ const router = express.Router();
 const accountController = require('../controllers/accountController');
 
 // Rota para criar metadados de uma conta
-router.post('/', accountController.createAccountMetadata);
+router.post('/create', accountController.createAccountMetadata);
 
-// Rota para buscar metadados de uma conta
-router.post('/:id', accountController.getAccountMetadataById);
-
+// Rota para criar metadados de uma conta
+router.get('/login', accountController.updateAccountMetadata);
 
 module.exports = router;

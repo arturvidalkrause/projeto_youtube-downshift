@@ -1,21 +1,31 @@
+/* src/index.css - CORRIGIDO */
+
+/* --- 1. Importação Global de Fontes (Para o visual profissional) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Mantivemos a definição da fonte principal aqui */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* AS LINHAS ABAIXO FORAM REMOVIDAS. 
+    Elas definiam o tema escuro (fundo preto, texto branco) para tudo.
+    
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  */
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #646cff; /* Mantive a cor do link padrão */
   text-decoration: inherit;
 }
 a:hover {
@@ -24,10 +34,20 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* AS LINHAS ABAIXO FORAM REMOVIDAS.
+    Elas centralizavam todo o conteúdo no meio da tela, 
+    o que impedia nosso layout de página inteira de funcionar.
+    
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  */
+
+  /* --- 2. Base de Cores Claras (A SOLUÇÃO) --- */
+  /* Definimos o fundo cinza claro e o texto escuro como padrão para o site todo */
+  background-color: #f7f8fa;
+  color: #172b4d;
 }
 
 h1 {
@@ -42,7 +62,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* Corrigido para o tema claro */
+  background-color: #f9f9f9; 
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -53,16 +74,43 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.links {
+  /* 1. Layout: Transforma em uma barra horizontal e centralizada */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Espaçamento entre os links */
+  
+  /* 2. Fundo e Divisão: Cria uma barra sutil */
+  padding: 0.75rem 0;
+  background-color: #f9f9f9; /* Um pouco mais claro que o fundo principal */
+  border-bottom: 1px solid #363636; /* Linha divisória sutil */
 }
+
+/* Esconde as tags <br> que não precisamos mais */
+.links br {
+    display: none;
+}
+
+/* 3. Estilo de cada Link */
+.links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem; /* Aumenta a área clicável */
+  border-radius: 6px;
+  border: 1px solid transparent; /* Borda invisível para manter o tamanho no hover */
+  transition: all 0.2s ease-in-out;
+}
+
+/* 4. Efeito ao passar o mouse */
+.links a:hover {
+  background-color: var(--link-color);
+  color: black; /* Garante que o texto fique branco sobre o fundo azul */
+  border-color: var(--link-color);
+}
+
+/* O BLOCO @media ABAIXO FOI REMOVIDO.
+  Ele era parte do sistema de tema escuro/claro automático do Vite.
+  Como queremos um tema claro consistente, removemos para evitar conflitos.
+*/
