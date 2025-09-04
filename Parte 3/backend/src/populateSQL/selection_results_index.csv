@@ -1,0 +1,10 @@
+QueryName,Average_ms,StdDev_ms,RowCount,RunCount,Error
+Total-Watch-Time-Per-User,15.7037,2.0637,1000,100,false
+Most-Watched-Content,40.1446,0.9358,20,100,false
+Content-Interaction-Counts,37.0110,2.0220,10787,100,false
+Channel-Subscriber-Count,9.0349,0.5878,300,100,false
+Most-Commented-Videos,7.0071,0.3536,20,100,false
+Get-User-History,3.5098,0.4664,18,100,false
+Poll-Results-Aggregation,15.6826,0.5023,1731,100,false
+Playlist-Total-Duration,19.2238,0.4781,1000,100,false
+Content-By-Category-And-Language,5.3870,0.1643,435,100,false

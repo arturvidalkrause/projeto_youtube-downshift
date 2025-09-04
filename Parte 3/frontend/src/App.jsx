@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
 
+// Componentes
+import Header from './components/Header';
+
+// Paginas
+import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
+import Watch from './pages/Watch';
+import SearchResults from './pages/SearchResults';
+import Channel from './pages/Channel';
+import NotFound from './pages/NotFound';
+import UploadPage from './pages/UploadPage';
+import QueryBuilder from './pages/QueryBuilder';
+import AllLinks from './components/Links';
 function App() {
-  const [count, setCount] = useState(0)
+	return (
+		<div>
+			{/* Aparecera e todas as paginas */}
+			<Header />
+			<AllLinks/>
+			<main>
+				<Routes>
+					{/* HOME */}
+					<Route path="/" element={<Home />} />
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+					{/* Login */}
+					<Route path="/login" element={<LoginPage />} />
+
+					{/* Assistir ao video */}
+					<Route path="/watch" element={<Watch />} />
+
+					{/* Resultados de busca */}
+					<Route path="/results" element={<SearchResults />} />
+
+					{/* Upload de video */}
+					<Route path="/upload" element={<UploadPage />} />
+
+					{/* Rota dinamica para o nome do canal */}
+					<Route path="/:channelName" element={<Channel />} />
+
+					{/* Rota para a query */}
+					<Route path="/Query" element={<QueryBuilder />} />
+
+					{/* Pagina nao encontrada */}
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+				
+			</main>
+		</div>
+	)
 }
 
-export default App
+export default App;

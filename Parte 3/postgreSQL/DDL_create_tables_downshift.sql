@@ -1,298 +1,379 @@
--- Define um schema para organizar as tabelas
-CREATE SCHEMA IF NOT EXISTS downshift;
+-- =====================================
+-- == ARQUIVO DE CRIAÇÃO DAS TABELAS  ==
+-- ==        DOWSHIFT v3.0.5          ==
+-- =====================================
 
+--> por brunikito + avidalkrause
+
+----------------
+-- DEFINIÇÕES --
+----------------
+CREATE SCHEMA IF NOT EXISTS downshift;
+-- Define um schema para organizar as tabelas
 SET search_path TO downshift;
 
--- Domínio para URLs
-CREATE DOMAIN LINK AS VARCHAR(255);
+--------------
+-- DOMÍNIOS --
+--------------
+-- URL
+CREATE DOMAIN LINK AS VARCHAR(512);
 
--- TABELAS AUXILIARES --
+-- ID
+CREATE DOMAIN FIREBASEID AS VARCHAR(128);
+--> ID firebase
+CREATE DOMAIN NANOID AS CHAR(21) CHECK (char_length(VALUE) = 21);
+--> atualmente NanoID para tabelas principais
+CREATE DOMAIN UID AS INT CHECK (VALUE >= 0);
+--> INT para tabelas auxiliares (lookup tables)
 
--- Resoluções do conteudo
-CREATE TABLE resolution (
-    reso_id SERIAL PRIMARY KEY, -- PK
-    reso_type VARCHAR(5) UNIQUE NOT NULL -- Tipo (ex: 720, 1080, 1920)
-);
-
--- Tags para conteúdos/playlists
-CREATE TABLE tags (
-    tag_id SERIAL PRIMARY KEY, -- PK
-    tag_name VARCHAR(20) NOT NULL UNIQUE -- Nome tag
+--------------------------------------------------
+-- TABELAS AUXILIARES (Lookup Tables) <table>_A --
+--------------------------------------------------
+-- Resoluções do conteúdo
+CREATE TABLE resolution_A (
+    uid UID PRIMARY KEY, -- PK
+    _is_vertical BOOLEAN NOT NULL, -- Vertical?
+    _height INT NOT NULL, -- Altura do vídeo (720, 360, etc)
+    _type varchar(7) NOT NULL -- (ex: video, short, live)
 );
 
 -- Níveis de membro dos canais
-CREATE TABLE member_level (
-    memb_lvl_id SERIAL PRIMARY KEY, -- PK
-    memb_lvl_type SMALLINT UNIQUE NOT NULL -- Tipo nível (ex: 0, 1, 2)
+CREATE TABLE member_level_A (
+    tier INT PRIMARY KEY, -- PK
+    _label VARCHAR(30) UNIQUE NOT NULL -- (ex: 0, 1, 2)
 );
 
 -- Idiomas disponíveis
-CREATE TABLE languages (
-    lang_id SERIAL PRIMARY KEY, -- PK
-    lang_name VARCHAR(30) UNIQUE NOT NULL -- Nome idioma
+CREATE TABLE language_A (
+    uid UID PRIMARY KEY, -- PK
+    _label VARCHAR(30) UNIQUE NOT NULL -- (ex: português, english)
 );
 
 -- Classificações indicativas
-CREATE TABLE indication_rating (
-    ind_rat_id SERIAL PRIMARY KEY, -- PK
-    ind_rat_body VARCHAR(2) UNIQUE NOT NULL -- Sigla (ex: L, 18)
+CREATE TABLE indicative_rating_A (
+    uid UID PRIMARY KEY, -- PK
+    _label VARCHAR(2) UNIQUE NOT NULL -- (ex: L, 12, 18)
 );
 
 -- Categorias de conteúdo
-CREATE TABLE categories (
-    catg_id SERIAL PRIMARY KEY, -- PK
-    catg_type VARCHAR(50) UNIQUE NOT NULL -- Nome categoria
+CREATE TABLE category_A (
+    uid UID PRIMARY KEY, -- PK
+    _label VARCHAR(50) UNIQUE NOT NULL -- (ex: Música, Esportes)
 );
 
 -- Status de conteúdo/playlist
-CREATE TABLE status (
-    st_id SERIAL PRIMARY KEY, -- PK
-    st_type VARCHAR(15) UNIQUE NOT NULL -- Tipo status (ex: Público, Privado)
+CREATE TABLE status_A (
+    uid UID PRIMARY KEY, -- PK
+    _label VARCHAR(15) UNIQUE NOT NULL -- (ex: Público, Privado)
 );
 
 -- Tipos de interação (Like, Salvar, Denunciar, etc.)
-CREATE TABLE interaction (
-    inter_id SERIAL PRIMARY KEY, -- PK
-    inter_type VARCHAR(10) NOT NULL UNIQUE -- Tipo da interação
+CREATE TABLE interaction_A (
+    uid UID PRIMARY KEY, -- PK
+    _label VARCHAR(20) NOT NULL UNIQUE -- (ex: Like, Dislike)
 );
 
--- TABELAS PRINCIPAIS --
+CREATE TABLE login_provider_A (
+    uid UID PRIMARY KEY, -- PK
+    _name VARCHAR(50) UNIQUE NOT NULL -- (ex: google, facebook)
+);
+
+----------------------------------
+-- TABELAS PRINCIPAIS <table>_T --
+----------------------------------
 
 -- Dados dos usuários
-CREATE TABLE users (
-    users_id SERIAL PRIMARY KEY, -- PK
-    users_name VARCHAR(50) NOT NULL,
-    users_email VARCHAR(320) UNIQUE NOT NULL,
-    users_password VARCHAR(128) NOT NULL,
-    users_photo LINK -- URL foto
+CREATE TABLE user_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    firebaseid FIREBASEID UNIQUE NOT NULL,
+    _name VARCHAR(50) NOT NULL, -- Nome
+    _email VARCHAR(320) UNIQUE NOT NULL, -- E-mail
+    _is_verified BOOLEAN NOT NULL, -- E-mail Verificado?
+    _profile_picture_url LINK, -- Pfp URL
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    sign_in_provider_uid UID NOT NULL REFERENCES login_provider_A (uid) -- FK <== login_provider_A
 );
 
 -- Canais dos usuários
-CREATE TABLE channel (
-    channel_id SERIAL PRIMARY KEY, -- PK	
-    channel_url LINK UNIQUE NOT NULL, -- URL do canal
-    ch_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    ch_name VARCHAR(50) NOT NULL,
-    ch_desc VARCHAR(2000) NOT NULL,
-    ch_welcome_vid LINK, -- URL vídeo boas-vindas
-    ch_banner LINK, -- URL banner
-    users_id INT NOT NULL REFERENCES users (users_id) -- FK users
+CREATE TABLE channel_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _url LINK UNIQUE NOT NULL, -- URL
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    _name VARCHAR(50) NOT NULL, -- Nome
+    _description VARCHAR(2000) NOT NULL, -- Descrição
+    _banner_url LINK, -- Banner URL
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid) -- FK <== user_T
 );
 
 -- Links externos dos canais.
-CREATE TABLE channel_external_link (
-    ch_ext_link LINK NOT NULL, -- URL externa
-    channel_id INT NOT NULL REFERENCES channel (channel_id), -- FK channel
-    PRIMARY KEY (ch_ext_link, channel_id) -- PK composta
+CREATE TABLE channel_external_link_T (
+    nanoid NANOID PRIMARY KEY,
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid) ON DELETE CASCADE, -- FK <== channel_T
+    _url LINK NOT NULL, -- URL
+    UNIQUE (channel_nanoid, _url)
 );
 
 -- Usuários administradores de canais
-CREATE TABLE user_admin_channel (
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    channel_id INT NOT NULL REFERENCES channel (channel_id), -- FK channel
-    PRIMARY KEY (users_id, channel_id) -- PK composta
+CREATE TABLE user_admin_channel_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== user_T
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid), -- PK <== channel_T
+    PRIMARY KEY (user_nanoid, channel_nanoid)
 );
 
 -- Interação do usuário com canal
-CREATE TABLE user_int_channel (
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    channel_id INT NOT NULL REFERENCES channel (channel_id), -- FK channel
-    PRIMARY KEY (users_id, channel_id), -- PK composta
-    u_is_sub_to_ch BOOLEAN NOT NULL, -- Inscrito?
-    u_is_notified_by_ch BOOLEAN NOT NULL, -- Notificações?
-    u_member_level_ch INT NOT NULL REFERENCES member_level (memb_lvl_id) -- FK member
-);
-
--- Legendas dos conteúdos
-CREATE TABLE caption (
-    cap_id SERIAL PRIMARY KEY, -- PK
-    cap_language INT NOT NULL REFERENCES languages (lang_id), -- FK languages
-    cap_body TEXT NOT NULL -- Texto legenda
+CREATE TABLE user_interest_channel_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== user_T
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid), -- PK <== channel_T
+    _is_sub BOOLEAN NOT NULL, -- É inscrito?
+    _is_notified BOOLEAN NOT NULL, -- É notificado?
+    member_level_tier INT NOT NULL REFERENCES member_level_A (tier), -- FK <== member_level_A
+    PRIMARY KEY (user_nanoid, channel_nanoid)
 );
 
 -- Conteúdo principal (vídeos, lives, shorts)
-CREATE TABLE content (
-    content_id SERIAL PRIMARY KEY, -- PK
-    content_url LINK UNIQUE NOT NULL, -- URL conteúdo
-    cont_title VARCHAR(100) NOT NULL,
-    cont_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    cont_status INT NOT NULL REFERENCES status (st_id), -- FK status
-    cont_thumb LINK NOT NULL, -- URL thumbnail
-    cont_desc VARCHAR(2000) NOT NULL,
-    cont_duration INTERVAL NOT NULL, -- Duração
-    cont_resolution INT NOT NULL REFERENCES resolution (reso_id), -- FK resolution
-    cont_category INT NOT NULL REFERENCES categories (catg_id), -- FK categories
-    cont_ind_rating INT NOT NULL REFERENCES indication_rating (ind_rat_id), -- FK indication_rating
-    cont_language INT NOT NULL REFERENCES languages (lang_id), -- FK languages
-    cont_caption INT NOT NULL REFERENCES caption (cap_id), -- FK caption
-    channel_id INT NOT NULL REFERENCES channel (channel_id) -- FK channel
+CREATE TABLE content_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _url LINK UNIQUE NOT NULL, -- URL
+    _title VARCHAR(100) NOT NULL, -- Título
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    _thumbnail_url LINK NOT NULL, -- Thumbnail URL
+    _description VARCHAR(2000) NOT NULL, -- Descrição
+    _duration INTERVAL NOT NULL, -- Duração
+    status_uid UID NOT NULL REFERENCES status_A (uid), -- FK <== status_A
+    resolution_uid UID NOT NULL REFERENCES resolution_A (uid), -- FK <== resolution_A
+    category_uid UID NOT NULL REFERENCES category_A (uid), -- FK <== category_A
+    indicative_rating_uid UID NOT NULL REFERENCES indicative_rating_A (uid), -- FK <== indicative_rating_A
+    language_uid UID NOT NULL REFERENCES language_A (uid), -- FK <== language_A
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid) -- FK <== channel_T
 );
 
--- Relação de tags a conteúdos
-CREATE TABLE content_tag (
-    tag_id INT NOT NULL REFERENCES tags (tag_id), -- FK tags
-    content_id INT NOT NULL REFERENCES content (content_id), -- PK <== FK content -- FK content
-    PRIMARY KEY (tag_id, content_id) -- FK composta
+-- Legendas dos conteúdos
+CREATE TABLE caption_T (
+    language_uid UID NOT NULL REFERENCES language_A (uid), -- PK <== language_A
+    content_nanoid NANOID NOT NULL REFERENCES content_T (nanoid), -- PK <== content_T
+    _body TEXT NOT NULL, -- Texto da legenda
+    PRIMARY KEY (language_uid, content_nanoid)
 );
 
--- Progresso de visualização de conteúdo por usuário
-CREATE TABLE user_watching_content (
-    u_watch_cont_id SERIAL PRIMARY KEY, -- PK
-    u_watch_duration_cont INTERVAL NOT NULL, -- Tempo assistido
-    u_watch_cont_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    u_is_watching_cont_now BOOLEAN NOT NULL, -- Assistindo agora?
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    content_id INT NOT NULL REFERENCES content (content_id) -- FK content
+-- Visualização de conteúdo por usuário
+CREATE TABLE user_watch_content_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _duration INTERVAL NOT NULL, -- Duração
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    _is_currently_watching BOOLEAN NOT NULL, -- Assistindo agora?
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- FK <== user_T
+    content_nanoid NANOID NOT NULL REFERENCES content_T (nanoid) -- FK <== content_T
 );
 
 -- Detalhes de transmissões ao vivo
-CREATE TABLE live (
-    content_id INT PRIMARY KEY REFERENCES content (content_id), -- PK <== FK content
-    live_body BYTEA NOT NULL, -- Stream de dados
-    is_live_now BOOLEAN NOT NULL DEFAULT FALSE, -- Ao vivo agora?
-    live_start TIMESTAMP WITH TIME ZONE NOT NULL -- Início agendado
+CREATE TABLE live_T (
+    content_nanoid NANOID PRIMARY KEY REFERENCES content_T (nanoid), -- PK <== content_T
+    _is_live_now BOOLEAN NOT NULL DEFAULT FALSE, -- Ao vivo agora?
+    _start_time TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP -- Início agendado
 );
 
 -- Detalhes de vídeos gravados
-CREATE TABLE video (
-    content_id INT PRIMARY KEY REFERENCES content (content_id), -- PK <== FK content
-    video_body TEXT NOT NULL, -- URL do video
-    video_duration INTERVAL NOT NULL -- duração
+CREATE TABLE video_T (
+    content_nanoid NANOID PRIMARY KEY REFERENCES content_T (nanoid) -- PK <== content_T
 );
 
 -- Detalhes de vídeos curtos
-CREATE TABLE short (
-    content_id INT PRIMARY KEY REFERENCES content (content_id), -- PK <== FK content
-    full_video_id INT REFERENCES video (content_id), -- FK video
-    sh_music_link LINK, -- URL música
-    sh_body LINK NOT NULL -- URL do short
+CREATE TABLE short_T (
+    content_nanoid NANOID PRIMARY KEY REFERENCES content_T (nanoid), -- PK <== content_T
+    cut_of_video_nanoid NANOID DEFAULT NULL REFERENCES video_T (content_nanoid), -- FK <== video_T -- Short é corte de vídeo
+    _music_url LINK -- URL da música (se tiver)
 );
 
--- Comentários gerais
-CREATE TABLE comment (
-    comment_id SERIAL PRIMARY KEY, -- PK
-    com_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    com_is_edited BOOLEAN NOT NULL DEFAULT FALSE, -- Editado?
-    com_body TEXT NOT NULL, -- Texto comentário
-    users_id INT NOT NULL REFERENCES users (users_id) -- FK users (autor)
-);
-
--- Comentários específicos de vídeos
-CREATE TABLE video_comment (
-    comment_id INT PRIMARY KEY REFERENCES comment (comment_id), -- PK <== FK comment
-    content_id INT NOT NULL REFERENCES video (content_id) -- FK video
-);
-
--- Comentários específicos de lives
-CREATE TABLE live_comment (
-    comment_id INT PRIMARY KEY REFERENCES comment (comment_id), -- PK <== FK comment
-    content_id INT NOT NULL REFERENCES live (content_id) -- FK live
-);
-
--- Comentários específicos de shorts
-CREATE TABLE shortcomment (
-    comment_id INT PRIMARY KEY REFERENCES comment (comment_id), -- PK <== FK comment
-    content_id INT NOT NULL REFERENCES short (content_id) -- FK short
-);
-
--- Respostas a comentários
-CREATE TABLE comment_reply (
-    response_comment_id INT PRIMARY KEY REFERENCES comment (comment_id) ON DELETE CASCADE, -- PK <== FK comment (resposta)
-    parent_comment_id INT NOT NULL REFERENCES comment (comment_id) ON DELETE CASCADE -- FK comment
-);
+-- Adicionando o vídeo de boas vindas ao canal
+ALTER TABLE channel_T
+ADD COLUMN welcome_video_nanoid NANOID REFERENCES video_T (content_nanoid) DEFAULT NULL;
 
 -- Enquetes criadas por canais
-CREATE TABLE poll (
-    poll_id SERIAL PRIMARY KEY, -- PK
-    poll_title TEXT NOT NULL, -- Título enquete
-    poll_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    channel_id INT NOT NULL REFERENCES channel (channel_id) -- FK channel
+CREATE TABLE poll_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _title TEXT NOT NULL, -- Título da enquete
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid) -- FK <== channel_T
 );
 
 -- Opções de uma enquete
-CREATE TABLE poll_option (
-    option_id SERIAL PRIMARY KEY, -- PK
-    poll_id INT NOT NULL REFERENCES poll (poll_id) ON DELETE CASCADE, -- FK poll
-    option_text TEXT NOT NULL -- Texto opção
+CREATE TABLE poll_option_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    poll_nanoid NANOID NOT NULL REFERENCES poll_T (nanoid) ON DELETE CASCADE, -- FK <== poll_T
+    _body TEXT NOT NULL -- Texto da opção
 );
 
 -- Respostas dos usuários às opções de enquete
-CREATE TABLE poll_response (
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    option_id INT NOT NULL REFERENCES poll_option (option_id) ON DELETE CASCADE, -- FK poll_option
-    response_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    PRIMARY KEY (users_id, option_id) -- PK composta
+CREATE TABLE poll_response_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== users_T
+    option_nanoid NANOID NOT NULL REFERENCES poll_option_T (nanoid) ON DELETE CASCADE, -- PK <== poll_option_T
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    PRIMARY KEY (user_nanoid, option_nanoid)
+);
+
+-- Trigger para evitar respostas duplicadas
+CREATE OR REPLACE FUNCTION check_single_vote_per_poll()
+RETURNS TRIGGER AS $$
+DECLARE
+    current_poll NANOID; -- << CORRIGIDO DE 'uuid' PARA 'NANOID'
+BEGIN
+    -- (resto da função permanece igual)
+    SELECT poll_nanoid INTO current_poll
+    FROM poll_option_T
+    WHERE nanoid = NEW.option_nanoid;
+
+    IF TG_OP = 'INSERT' THEN
+        IF EXISTS (
+            SELECT 1
+            FROM poll_response_T pr
+            JOIN poll_option_T po ON pr.option_nanoid = po.nanoid
+            WHERE pr.user_nanoid = NEW.user_nanoid
+              AND po.poll_nanoid = current_poll
+        ) THEN
+            RAISE EXCEPTION 'User % already voted in Poll %!', NEW.user_nanoid, current_poll;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trigger_check_single_vote_per_poll ON poll_response_T;
+
+CREATE TRIGGER trigger_check_single_vote_per_poll
+BEFORE INSERT ON poll_response_T
+FOR EACH ROW
+EXECUTE FUNCTION check_single_vote_per_poll();
+
+-- Comentários gerais
+CREATE TABLE comment_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _created_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de criação
+    _is_edited BOOLEAN NOT NULL DEFAULT FALSE, -- Foi editado?
+    _body TEXT NOT NULL, -- Texto do comentário
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid) -- Autor do comentário
+);
+
+-- Comentários específicos de vídeos
+CREATE TABLE video_comment_T (
+    comment_nanoid NANOID PRIMARY KEY REFERENCES comment_T (nanoid), -- PK <== comment_T
+    content_nanoid NANOID NOT NULL REFERENCES video_T (content_nanoid) -- FK <== video_T
+);
+
+-- Comentários específicos de lives
+CREATE TABLE live_comment_T (
+    comment_nanoid NANOID PRIMARY KEY REFERENCES comment_T (nanoid), -- PK <== comment_T
+    content_nanoid NANOID NOT NULL REFERENCES live_T (content_nanoid) -- FK <== live_T
+);
+
+-- Comentários específicos de shorts
+CREATE TABLE short_comment_T (
+    comment_nanoid NANOID PRIMARY KEY REFERENCES comment_T (nanoid), -- PK <== FK comment_T
+    content_nanoid NANOID NOT NULL REFERENCES short_T (content_nanoid) -- FK <== short_T
+);
+
+-- Respostas a comentários
+CREATE TABLE comment_reply_T (
+    reply_comment_nanoid NANOID NOT NULL REFERENCES comment_T (nanoid) ON DELETE CASCADE, -- PK <== comment_T (resposta)
+    target_comment_nanoid NANOID NOT NULL REFERENCES comment_T (nanoid) ON DELETE CASCADE, -- FK <== comment_T
+    PRIMARY KEY (
+        reply_comment_nanoid,
+        target_comment_nanoid
+    )
 );
 
 -- Comentários específicos de enquetes
-CREATE TABLE poll_comment (
-    comment_id INT PRIMARY KEY REFERENCES comment (comment_id), -- PK <== FK comment
-    poll_id INT NOT NULL REFERENCES poll (poll_id) -- FK poll
+CREATE TABLE poll_comment_T (
+    comment_nanoid NANOID PRIMARY KEY REFERENCES comment_T (nanoid), -- PK <== FK comment_T
+    poll_nanoid NANOID NOT NULL REFERENCES poll_T (nanoid) -- FK <== poll_T
 );
 
 -- Playlists de conteúdo
-CREATE TABLE playlist (
-    play_id SERIAL PRIMARY KEY, -- PK
-    play_url LINK UNIQUE NOT NULL, -- URL playlist
-    play_title VARCHAR(100) NOT NULL,
-    play_desc TEXT NOT NULL,
-    play_status INT NOT NULL REFERENCES status (st_id), -- FK status
-    play_thumb TEXT NOT NULL, -- URL thumbnail
-    channel_id INT NOT NULL REFERENCES channel (channel_id) ON DELETE CASCADE -- FK channel
+CREATE TABLE playlist_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _url LINK UNIQUE NOT NULL, -- URL
+    _title VARCHAR(100) NOT NULL, -- Título
+    _description TEXT NOT NULL, -- Descrição
+    _thumbnail_url LINK NOT NULL, -- Thumbnail URL
+    status_uid UID NOT NULL REFERENCES status_A (uid), -- FK <== status_A
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid) ON DELETE CASCADE -- FK <== channel
 );
 
 -- Conteúdos dentro de uma playlist
-CREATE TABLE playlist_content (
-    playlist_content_id SERIAL PRIMARY KEY, -- PK
-    content_id INT NOT NULL REFERENCES content (content_id), -- PK <== FK content
-    play_id INT NOT NULL REFERENCES playlist (play_id), -- FK playlist
-    play_created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    play_content_order INT NOT NULL -- Ordem na playlist
-);
-
--- Associação de tags a playlists
-CREATE TABLE playlist_tag (
-    play_tag INT NOT NULL REFERENCES tags (tag_id), -- FK tags
-    play_id INT NOT NULL REFERENCES playlist (play_id), -- FK playlist
-    PRIMARY KEY (play_tag, play_id) -- PK composta
-);
-
--- Registro base de uma interação de usuário
-CREATE TABLE user_interaction (
-    ui_id SERIAL PRIMARY KEY, -- PK
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    uint_type INT NOT NULL REFERENCES interaction (inter_id) -- FK interaction
+CREATE TABLE playlist_content_T (
+    playlist_nanoid NANOID NOT NULL REFERENCES playlist_T (nanoid), -- PK <== playlist_T
+    content_nanoid NANOID NOT NULL REFERENCES content_T (nanoid), -- PK <== content_T
+    _inserted_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de inserção
+    _play_content_order INT NOT NULL, -- Ordem na playlist
+    PRIMARY KEY (
+        playlist_nanoid,
+        content_nanoid
+    )
 );
 
 -- Interação do usuário com conteúdo
-CREATE TABLE user_int_content (
-    ui_cont_id INT PRIMARY KEY REFERENCES user_interaction (ui_id), -- PK <== FK user_interaction
-    content_id INT NOT NULL REFERENCES content (content_id) -- FK content
+CREATE TABLE user_interaction_content_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== FK user_T
+    content_nanoid NANOID NOT NULL REFERENCES content_T (nanoid), -- PK <== FK content_T
+    interaction_uid UID NOT NULL REFERENCES interaction_A (uid), -- PK <== FK interaction_A
+    PRIMARY KEY (
+        user_nanoid,
+        content_nanoid,
+        interaction_uid
+    )
 );
 
 -- Interação do usuário com playlist
-CREATE TABLE user_int_playlist (
-    ui_play_id INT PRIMARY KEY REFERENCES user_interaction (ui_id), -- PK <== FK user_interaction
-    play_id INT NOT NULL REFERENCES playlist (play_id) -- FK playlist
+CREATE TABLE user_interaction_playlist_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== FK user_T
+    playlist_nanoid NANOID NOT NULL REFERENCES playlist_T (nanoid), -- PK <== FK playlist_T
+    interaction_uid UID NOT NULL REFERENCES interaction_A (uid), -- FK <== interaction_A
+    PRIMARY KEY (user_nanoid, playlist_nanoid)
 );
 
 -- Interação do usuário com comentário
-CREATE TABLE user_int_comment (
-    ui_comment_id INT PRIMARY KEY REFERENCES user_interaction (ui_id), -- PK <== FK user_interaction
-    comment_id INT NOT NULL REFERENCES comment (comment_id) -- FK comment
+CREATE TABLE user_interaction_comment_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== FK user_T
+    comment_nanoid NANOID NOT NULL REFERENCES comment_T (nanoid), -- PK <== FK comment_T
+    interaction_uid UID NOT NULL REFERENCES interaction_A (uid), -- FK <== interaction_A
+    PRIMARY KEY (user_nanoid, comment_nanoid)
 );
 
 -- Notificações geradas por canais
-CREATE TABLE notification (
-    notification_id SERIAL PRIMARY KEY, -- PK
-    channel_id INT NOT NULL REFERENCES channel (channel_id), -- FK channel
-    notification_body TEXT NOT NULL -- Conteúdo notificação
+CREATE TABLE notification_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _body TEXT NOT NULL, -- Texto da notificação
+    channel_nanoid NANOID NOT NULL REFERENCES channel_T (nanoid) -- FK <== channel_T
 );
 
 -- Rastreia quais usuários receberam/visualizaram quais notificações
-CREATE TABLE user_notified (
-    not_sent_datetime TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP, -- data/hora
-    users_id INT NOT NULL REFERENCES users (users_id), -- FK users
-    notification_id INT NOT NULL REFERENCES notification (notification_id), -- FK notification
-    PRIMARY KEY (users_id, notification_id) -- PK Composta
+CREATE TABLE user_notified_T (
+    user_nanoid NANOID NOT NULL REFERENCES user_T (nanoid), -- PK <== FK user
+    notification_nanoid NANOID NOT NULL REFERENCES notification_T (nanoid), -- PK <== FK notification
+    _sent_at TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Instante de envio
+    _was_read BOOLEAN NOT NULL DEFAULT FALSE, -- Foi lida?
+    PRIMARY KEY (
+        user_nanoid,
+        notification_nanoid
+    )
+);
+
+-- Tags para conteúdos
+CREATE TABLE tag_T (
+    nanoid NANOID PRIMARY KEY, -- PK
+    _label VARCHAR(20) NOT NULL UNIQUE -- (ex: #carrosTunados, #HatsuneMiku. #V8, #39)
+);
+
+-- Tags para playlists
+CREATE TABLE playlist_tag_T (
+    playlist_nanoid NANOID NOT NULL REFERENCES playlist_T (nanoid), -- PK <== playlist_T
+    tag_nanoid NANOID NOT NULL REFERENCES tag_T (nanoid), -- PK <== tag_T
+    PRIMARY KEY (playlist_nanoid, tag_nanoid)
+);
+
+-- Tags para conteúdos
+CREATE TABLE content_tag_T (
+    content_nanoid NANOID NOT NULL REFERENCES content_T (nanoid), -- PK <== content_T
+    tag_nanoid NANOID NOT NULL REFERENCES tag_T (nanoid), -- PK <== tag_T
+    PRIMARY KEY (content_nanoid, tag_nanoid)
 );
